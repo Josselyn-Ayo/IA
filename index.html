@@ -20,7 +20,6 @@
         </div>
         <div class="nav-links">
             <a href="#generator">Generador</a>
-            <a href="#gallery">Galeria</a>
             <a href="#resources">Recursos</a>
             <a href="#about">Acerca</a>
         </div>
@@ -34,7 +33,7 @@
                 <span class="gradient-text">CryptoPunks</span>
             </h1>
             <p class="hero-subtitle">
-                El modelo GAN real ejecutandose directamente en tu navegador. Mismos pesos, misma red, mismo resultado que generate_punks.py.
+                El mismo modelo GAN de PyTorch generando CryptoPunks identicos a tu codigo. Presiona el boton y genera al instante.
             </p>
             <div class="hero-actions">
                 <a href="#generator" class="btn btn-primary">
@@ -49,18 +48,20 @@
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">100</span>
-                    <span class="stat-label">Dimensiones</span>
+                    <span class="stat-number" id="statBatches">10</span>
+                    <span class="stat-label">Lotes</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">&#8734;</span>
-                    <span class="stat-label">Combinaciones</span>
+                    <span class="stat-number">640</span>
+                    <span class="stat-label">Punks totales</span>
                 </div>
             </div>
         </div>
         <div class="hero-visual">
-            <canvas id="heroCanvas" width="480" height="480"></canvas>
+            <div id="heroPreview" class="hero-preview">
+                <span class="hero-preview-text" id="heroText">Cargando...</span>
+            </div>
         </div>
     </header>
 
@@ -68,16 +69,16 @@
         <div class="section-header">
             <span class="section-tag">GENERADOR</span>
             <h2 class="section-title">Crea tu coleccion</h2>
-            <p class="section-desc">El modelo GAN real se ejecuta en tu navegador con los mismos pesos de PyTorch. Resultado identico a generate_punks.py.</p>
+            <p class="section-desc">Cada lote fue generado por la misma red GAN de nateraw/cryptopunks-gan. Resultado identico a tu codigo Python.</p>
         </div>
         <div class="generator-box">
             <div class="model-status" id="modelStatus">
                 <div class="status-indicator loading" id="statusDot"></div>
-                <span id="statusText">Cargando modelo GAN...</span>
+                <span id="statusText">Cargando datos GAN...</span>
             </div>
             <div class="gen-controls">
                 <button class="btn btn-primary btn-generate" id="btnGenerate" disabled>
-                    <span class="btn-icon">&#9889;</span> Cargando modelo...
+                    <span class="btn-icon">&#9889;</span> Cargando...
                 </button>
                 <button class="btn btn-outline" id="btnDownload" disabled>
                     &#11015; Descargar PNG
@@ -87,27 +88,15 @@
             <div class="gen-output" id="genOutput">
                 <div class="placeholder-text" id="placeholder">
                     <span class="placeholder-icon">&#9889;</span>
-                    <p id="placeholderMsg">Cargando modelo GAN...</p>
+                    <p id="placeholderMsg">Cargando datos del modelo GAN...</p>
                 </div>
-                <canvas id="punksCanvas" class="punks-canvas hidden"></canvas>
+                <img id="punksImage" class="punks-image hidden" alt="Generated CryptoPunks">
             </div>
             <div class="gen-info" id="genInfo">
-                <span class="info-tag" id="genMode">Modo: Cargando</span>
+                <span class="info-tag" id="genBatch">Lote: --</span>
                 <span class="info-tag" id="genCount">Punks: 0</span>
-                <span class="info-tag" id="genSeed">Seed: ---</span>
-                <span class="info-tag" id="genTime">Tiempo: ---</span>
+                <span class="info-tag" id="genMode">Modo: --</span>
             </div>
-        </div>
-    </section>
-
-    <section class="gallery-section" id="gallery">
-        <div class="section-header">
-            <span class="section-tag">GALERIA</span>
-            <h2 class="section-title">Muestras del modelo</h2>
-            <p class="section-desc">Ejemplos generados con la red GAN real.</p>
-        </div>
-        <div class="gallery-grid" id="galleryGrid">
-            <div class="gallery-placeholder"><span>Cargando...</span></div>
         </div>
     </section>
 
@@ -115,7 +104,7 @@
         <div class="section-header">
             <span class="section-tag">RECURSOS</span>
             <h2 class="section-title">Codigo y Colab</h2>
-            <p class="section-desc">Accede al repositorio original o ejecuta el modelo en Google Colab.</p>
+            <p class="section-desc">Accede al repositorio del modelo GAN original o ejecutalo en Google Colab.</p>
         </div>
         <div class="resources-grid">
             <a href="https://github.com/nateraw/cryptopunks-gan" target="_blank" rel="noopener" class="resource-card resource-github">
@@ -124,16 +113,16 @@
                 <p>Repositorio del modelo GAN con codigo fuente y pesos entrenados.</p>
                 <span class="resource-link">nateraw/cryptopunks-gan &rarr;</span>
             </a>
-            <a href="https://colab.research.google.com/" target="_blank" rel="noopener" class="resource-card resource-colab" id="colabLink">
+            <a href="https://colab.research.google.com/drive/1AzL0VygqsRxdSqYv_d3hPbnPmWFWdriY" target="_blank" rel="noopener" class="resource-card resource-colab">
                 <div class="resource-icon">&#128300;</div>
                 <h3>Google Colab</h3>
-                <p>Ejecuta el generador con PyTorch en la nube. Sin instalacion.</p>
+                <p>Ejecuta el generador con PyTorch directamente en la nube. Sin instalacion.</p>
                 <span class="resource-link">Abrir en Colab &rarr;</span>
             </a>
             <a href="#" class="resource-card resource-download" id="downloadScript">
                 <div class="resource-icon">&#128230;</div>
                 <h3>Script Python</h3>
-                <p>Descarga generate_punks.py para ejecutar el modelo localmente.</p>
+                <p>Descarga generate_punks.py para generar los datos de la pagina web.</p>
                 <span class="resource-link">Descargar .py &rarr;</span>
             </a>
         </div>
@@ -147,18 +136,18 @@
         <div class="about-grid">
             <div class="about-card">
                 <div class="about-icon">&#129302;</div>
-                <h3>GAN Real en el Navegador</h3>
-                <p>La misma red neuronal de PyTorch se ejecuta en JavaScript con los pesos originales. Resultado identico a generate_punks.py.</p>
+                <h3>GAN Real</h3>
+                <p>Los punks que ves son generados por la misma red neuronal de PyTorch. No es una imitacion, es el output real del modelo.</p>
             </div>
             <div class="about-card">
                 <div class="about-icon">&#127922;</div>
                 <h3>Espacio Latente</h3>
-                <p>Cada punk se genera a partir de un vector aleatorio de 100 dimensiones, garantizando combinaciones infinitas.</p>
+                <p>Cada lote usa vectores aleatorios de 100 dimensiones, creando combinaciones unicas cada vez que ejecutas el script.</p>
             </div>
             <div class="about-card">
-                <div class="about-icon">&#127912;</div>
-                <h3>Canales RGBA</h3>
-                <p>El modelo produce 4 canales (RGBA) con fondo transparente, igual que los CryptoPunks originales.</p>
+                <div class="about-icon">&#9889;</div>
+                <h3>Insta-Generate</h3>
+                <p>Presiona un boton y al instante ves 64 CryptoPunks. Sin esperar, sin servidores, sin APIs.</p>
             </div>
         </div>
     </section>
@@ -171,13 +160,14 @@
             </div>
             <div class="footer-links">
                 <a href="https://github.com/nateraw/cryptopunks-gan" target="_blank" rel="noopener">GitHub</a>
-                <a href="#resources">Colab</a>
+                <a href="https://colab.research.google.com/drive/1AzL0VygqsRxdSqYv_d3hPbnPmWFWdriY" target="_blank" rel="noopener">Colab</a>
                 <a href="#about">Acerca</a>
             </div>
             <p class="footer-copy">&copy; 2026 CryptoPunksGG &mdash; Modelo GAN por nateraw</p>
         </div>
     </footer>
 
+    <script src="punks_data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
