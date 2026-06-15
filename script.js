@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDot.className = 'status-indicator ready';
         statusText.textContent = 'Modelo GAN cargado - ' + (totalBatches * 64) + ' punks disponibles';
         btnGenerate.disabled = false;
-        btnGenerate.innerHTML = '<span class="btn-icon">&#9889;</span> Generar Punks';
+        btnGenerate.innerHTML = '<span class="btn-icon">&#9654;</span> Generar Punks';
         placeholderMsg.textContent = 'Presiona "Generar Punks" para crear tu coleccion';
         genMode.textContent = 'Modo: GAN Real';
         document.getElementById('statBatches').textContent = totalBatches;
@@ -43,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
         statusDot.className = 'status-indicator error';
         statusText.textContent = 'Sin datos - Ejecuta python generate_punks.py';
         btnGenerate.disabled = false;
-        btnGenerate.innerHTML = '<span class="btn-icon">&#9889;</span> Generar Punks';
+        btnGenerate.innerHTML = '<span class="btn-icon">&#9654;</span> Generar Punks';
         placeholderMsg.innerHTML = 'Ejecuta <code>python generate_punks.py</code> para generar los datos del modelo.<br>Luego abre esta pagina con un servidor web o subela a Vercel.';
         placeholderMsg.classList.add('error-msg');
         genMode.textContent = 'Modo: Sin datos';
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         btnGenerate.classList.add('loading-state');
-        btnGenerate.innerHTML = '<span class="btn-icon">&#9889;</span> Cargando...';
+        btnGenerate.innerHTML = '<span class="btn-icon">&#9654;</span> Cargando...';
         btnGenerate.disabled = true;
 
         setTimeout(() => {
@@ -74,7 +74,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 placeholder.classList.add('hidden');
 
                 btnGenerate.classList.remove('loading-state');
-                btnGenerate.innerHTML = '<span class="btn-icon">&#9889;</span> Generar de Nuevo';
+                btnGenerate.innerHTML = '<span class="btn-icon">&#9654;</span> Generar de Nuevo';
                 btnGenerate.disabled = false;
                 btnDownload.disabled = false;
                 btnReset.classList.remove('hidden');
@@ -103,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
         placeholder.classList.remove('hidden');
         btnDownload.disabled = true;
         btnReset.classList.add('hidden');
-        btnGenerate.innerHTML = '<span class="btn-icon">&#9889;</span> Generar Punks';
+        btnGenerate.innerHTML = '<span class="btn-icon">&#9654;</span> Generar Punks';
         genBatch.textContent = 'Lote: --';
         genCount.textContent = 'Punks: 0';
         currentBatchIndex = -1;
@@ -202,28 +202,57 @@ print("Sube index.html, styles.css, script.js y punks_data.js a Vercel")
         document.body.removeChild(link);
     });
 
-    const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
-    const observer = new IntersectionObserver(entries => {
+    document.getElementById('btnCopy').addEventListener('click', () => {
+        const code = document.querySelector('.code-block code');
+        navigator.clipboard.writeText(code.textContent).then(() => {
+            const btn = document.getElementById('btnCopy');
+            btn.textContent = '\u2705 Copiado!';
+            setTimeout(() => { btn.textContent = 'Copiar'; }, 2000);
+        });
+    });
+
+    // Scroll animations
+    const scrollObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
+                entry.target.classList.add('visible');
             }
         });
-    }, observerOptions);
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 
-    document.querySelectorAll('.about-card, .resource-card').forEach((el, i) => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease ' + (i * 0.1) + 's, transform 0.6s ease ' + (i * 0.1) + 's';
-        observer.observe(el);
+    document.querySelectorAll('.scroll-animate').forEach((el, i) => {
+        el.style.transitionDelay = (i * 0.08) + 's';
+        scrollObserver.observe(el);
     });
 
-    const navbar = document.querySelector('.navbar');
+    // Particles
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 30; i++) {
+        const p = document.createElement('div');
+        p.className = 'particle';
+        p.style.left = Math.random() * 100 + '%';
+        p.style.animationDuration = (8 + Math.random() * 15) + 's';
+        p.style.animationDelay = (Math.random() * 10) + 's';
+        p.style.width = (2 + Math.random() * 4) + 'px';
+        p.style.height = p.style.width;
+        const colors = ['var(--accent-primary)', 'var(--accent-secondary)', 'var(--accent-tertiary)'];
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
+        particlesContainer.appendChild(p);
+    }
+
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
     window.addEventListener('scroll', () => {
-        navbar.style.borderBottomColor = window.scrollY > 50 ? 'rgba(108,92,231,0.2)' : 'var(--border-subtle)';
+        if (window.scrollY > 50) {
+            navbar.style.borderBottomColor = 'rgba(108,92,231,0.3)';
+            navbar.style.background = 'rgba(10,10,15,0.95)';
+        } else {
+            navbar.style.borderBottomColor = 'var(--border-subtle)';
+            navbar.style.background = 'rgba(10,10,15,0.85)';
+        }
     });
 
+    // Counter animation
     document.querySelectorAll('.stat-number').forEach(stat => {
         const n = parseInt(stat.textContent);
         if (isNaN(n)) return;

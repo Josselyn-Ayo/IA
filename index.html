@@ -9,56 +9,61 @@
 </head>
 <body>
     <div class="bg-grid"></div>
+    <div class="particles" id="particles"></div>
     <div class="floating-orb orb-1"></div>
     <div class="floating-orb orb-2"></div>
     <div class="floating-orb orb-3"></div>
 
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-logo">
-            <span class="logo-icon">&#9670;</span>
+            <span class="logo-icon"></span>
             <span class="logo-text">CryptoPunks<span class="accent">GG</span></span>
         </div>
         <div class="nav-links">
             <a href="#generator">Generador</a>
+            <a href="#motivation">Motivacion</a>
+            <a href="#stateofart">Estado del Arte</a>
+            <a href="#code">Codigo</a>
+            <a href="#conclusions">Conclusiones</a>
+            <a href="#team">Equipo</a>
             <a href="#resources">Recursos</a>
-            <a href="#about">Acerca</a>
         </div>
     </nav>
 
     <header class="hero" id="hero">
         <div class="hero-content">
-            <div class="badge"> powered by GAN </div>
-            <h1 class="hero-title">
+            <div class="badge animate-in"> powered by GAN </div>
+            <h1 class="hero-title animate-in">
                 Genera tus propios<br>
                 <span class="gradient-text">CryptoPunks</span>
             </h1>
-            <p class="hero-subtitle">
+            <p class="hero-subtitle animate-in">
                 El mismo modelo GAN de PyTorch generando CryptoPunks identicos a tu codigo. Presiona el boton y genera al instante.
             </p>
-            <div class="hero-actions">
-                <a href="#generator" class="btn btn-primary">
-                    <span class="btn-icon">&#9889;</span> Generar Ahora
+            <div class="hero-actions animate-in">
+                <a href="#generator" class="btn btn-primary btn-glow">
+                    <span class="btn-icon">&#9654;</span> Generar Now
                 </a>
-                <a href="#resources" class="btn btn-secondary">&#128218; Ver Recursos</a>
+                <a href="#resources" class="btn btn-secondary">Ver Recursos</a>
             </div>
-            <div class="stats-row">
-                <div class="stat">
+            <div class="stats-row animate-in">
+                <div class="stat animate-in">
                     <span class="stat-number">64</span>
                     <span class="stat-label">Punks por lote</span>
                 </div>
                 <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number" id="statBatches">10</span>
+                <div class="stat animate-in">
+                    <span class="stat-number" id="statBatches">20</span>
                     <span class="stat-label">Lotes</span>
                 </div>
                 <div class="stat-divider"></div>
-                <div class="stat">
-                    <span class="stat-number">640</span>
+                <div class="stat animate-in">
+                    <span class="stat-number">1280</span>
                     <span class="stat-label">Punks totales</span>
                 </div>
             </div>
         </div>
-        <div class="hero-visual">
+        <div class="hero-visual animate-in">
             <div id="heroPreview" class="hero-preview">
                 <span class="hero-preview-text" id="heroText">Cargando...</span>
             </div>
@@ -66,28 +71,28 @@
     </header>
 
     <section class="generator-section" id="generator">
-        <div class="section-header">
+        <div class="section-header scroll-animate">
             <span class="section-tag">GENERADOR</span>
             <h2 class="section-title">Crea tu coleccion</h2>
-            <p class="section-desc">Cada lote fue generado por la misma red GAN de nateraw/cryptopunks-gan. Resultado identico a tu codigo Python.</p>
+            <p class="section-desc">Cada lote fue generado por la misma red GAN. Resultado identico a tu codigo Python.</p>
         </div>
-        <div class="generator-box">
+        <div class="generator-box scroll-animate">
             <div class="model-status" id="modelStatus">
                 <div class="status-indicator loading" id="statusDot"></div>
                 <span id="statusText">Cargando datos GAN...</span>
             </div>
             <div class="gen-controls">
-                <button class="btn btn-primary btn-generate" id="btnGenerate" disabled>
-                    <span class="btn-icon">&#9889;</span> Cargando...
+                <button class="btn btn-primary btn-generate btn-glow" id="btnGenerate" disabled>
+                    <span class="btn-icon">&#9654;</span> Cargando...
                 </button>
                 <button class="btn btn-outline" id="btnDownload" disabled>
-                    &#11015; Descargar PNG
+                    &#8595; Descargar PNG
                 </button>
-                <button class="btn btn-outline hidden" id="btnReset">&#8635; Limpiar</button>
+                <button class="btn btn-outline hidden" id="btnReset">&#8634; Limpiar</button>
             </div>
             <div class="gen-output" id="genOutput">
                 <div class="placeholder-text" id="placeholder">
-                    <span class="placeholder-icon">&#9889;</span>
+                    <span class="placeholder-icon">&#9641;</span>
                     <p id="placeholderMsg">Cargando datos del modelo GAN...</p>
                 </div>
                 <img id="punksImage" class="punks-image hidden" alt="Generated CryptoPunks">
@@ -100,27 +105,217 @@
         </div>
     </section>
 
+    <section class="team-section" id="team">
+        <div class="section-header scroll-animate">
+            <span class="section-tag">EQUIPO</span>
+            <h2 class="section-title">Integrantes</h2>
+        </div>
+        <div class="team-grid">
+            <div class="team-card scroll-animate">
+                <div class="team-avatar girl">&#128103;</div>
+                <h3 class="team-name">Josselyn Ayo</h3>
+                <p class="team-role">Desarrollo del proyecto</p>
+            </div>
+            <div class="team-card scroll-animate">
+                <div class="team-avatar">&#128102;</div>
+                <h3 class="team-name">Mateo Piedra</h3>
+                <p class="team-role">Investigacion y desarrollo</p>
+            </div>
+            <div class="team-card scroll-animate">
+                <div class="team-avatar">&#128102;</div>
+                <h3 class="team-name">Henry Tonato</h3>
+                <p class="team-role">Investigacion y desarrollo</p>
+            </div>
+        </div>
+    </section>
+
+<section class="info-section" id="motivation">
+        <div class="section-header scroll-animate">
+            <span class="section-tag">MOTIVACION</span>
+            <h2 class="section-title">Motivaci&oacute;n</h2>
+        </div>
+        <div class="info-content">
+            <div class="info-block motivation-block scroll-animate">
+                <p class="motivation-text">La generaci&oacute;n autom&aacute;tica de im&aacute;genes mediante Inteligencia Artificial se ha convertido en una de las aplicaciones m&aacute;s interessantes del Deep Learning. Los modelos generativos permiten crear im&aacute;genes nuevas a partir de patrones aprendidos durante el entrenamiento. En este proyecto se utiliza un modelo GAN (Generative Adversarial Network) entrenado con im&aacute;genes de CryptoPunks para generar personajes digitales &uacute;nicos. El objetivo es comprender el funcionamiento de las redes generativas y analizar la capacidad de la IA para producir contenido visual original.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="info-section info-section-alt" id="stateofart">
+        <div class="section-header scroll-animate">
+            <span class="section-tag">ESTADO DEL ARTE</span>
+            <h2 class="section-title">Estado del Arte</h2>
+        </div>
+        <div class="info-content">
+            <div class="info-block scroll-animate">
+                <p>Las Redes Generativas Antag&oacute;nicas (GAN) fueron propuestas por Ian Goodfellow en 2014. Desde entonces, han sido ampliamente utilizadas para la generaci&oacute;n de im&aacute;genes, videos y contenido sint&eacute;tico.</p>
+                <p>Entre los modelos m&aacute;s conocidos se encuentran:</p>
+                <ul>
+                    <li><strong>DCGAN</strong> (Deep Convolutional GAN).</li>
+                    <li><strong>StyleGAN</strong> y <strong>StyleGAN2</strong>.</li>
+                    <li><strong>CycleGAN</strong>.</li>
+                    <li><strong>BigGAN</strong>.</li>
+                </ul>
+                <p>Las GAN han sido utilizadas en la creaci&oacute;n de rostros humanos, arte digital, videojuegos y colecciones NFT como los CryptoPunks. Actualmente representan una de las t&eacute;cnicas m&aacute;s importantes dentro del campo de la generaci&oacute;n de im&aacute;genes mediante Inteligencia Artificial. El proyecto utiliza una arquitectura GAN preentrenada para generar im&aacute;genes de CryptoPunks.</p>
+            </div>
+
+            <div class="info-block scroll-animate">
+                <h3>Funcionamiento general</h3>
+                <div class="steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-text">Se carga el modelo generador entrenado.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-text">Se generan vectores aleatorios utilizando una distribuci&oacute;n normal.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-text">El generador transforma esos vectores en im&aacute;genes sint&eacute;ticas.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-text">Las im&aacute;genes generadas se almacenan en un archivo PNG.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">5</div>
+                        <div class="step-text">Finalmente se visualizan utilizando Matplotlib.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-block scroll-animate">
+                <h3>Arquitectura GAN</h3>
+                <p>Una GAN est&aacute; compuesta por dos redes neuronales:</p>
+                <div class="gan-diagram">
+                    <div class="gan-node noise">
+                        <span class="gan-node-icon">z</span>
+                        <span class="gan-node-label">Ruido<br><small>z ~ N(0,1)</small></span>
+                    </div>
+                    <div class="gan-arrow">&rarr;</div>
+                    <div class="gan-node generator">
+                        <span class="gan-node-icon">G</span>
+                        <span class="gan-node-label">Generador<br><small>G(z)</small></span>
+                    </div>
+                    <div class="gan-arrow">&rarr;</div>
+                    <div class="gan-node image">
+                        <span class="gan-node-icon">IMG</span>
+                        <span class="gan-node-label">Imagen<br><small>Punk</small></span>
+                    </div>
+                </div>
+                <p style="margin-top:16px;">En este proyecto solamente se utiliza el <strong>generador</strong> ya entrenado para crear nuevos CryptoPunks.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="code-section" id="code">
+        <div class="section-header scroll-animate">
+            <span class="section-tag">CODIGO</span>
+            <h2 class="section-title">Codigo del Modelo</h2>
+            <p class="section-desc">Este es el codigo Python utilizado para generar los CryptoPunks con PyTorch y una GAN preentrenada.</p>
+        </div>
+        <div class="code-block scroll-animate">
+            <div class="code-header">
+                <span class="code-lang">Python</span>
+                <button class="btn-copy" id="btnCopy" title="Copiar codigo">Copiar</button>
+            </div>
+            <pre><code>import torch
+from huggingface_hub import hf_hub_download
+from torch import nn
+from torchvision.utils import save_image
+import matplotlib.pyplot as plt
+import matplotlib.image as mpimg
+
+
+class Generator(nn.Module):
+    def __init__(self, nc=4, nz=100, ngf=64):
+        super(Generator, self).__init__()
+        self.network = nn.Sequential(
+            nn.ConvTranspose2d(nz, ngf * 4, 3, 1, 0, bias=False),
+            nn.BatchNorm2d(ngf * 4),
+            nn.ReLU(True),
+            nn.ConvTranspose2d(ngf * 4, ngf * 2, 3, 2, 1, bias=False),
+            nn.BatchNorm2d(ngf * 2),
+            nn.ReLU(True),
+            nn.ConvTranspose2d(ngf * 2, ngf, 4, 2, 0, bias=False),
+            nn.BatchNorm2d(ngf),
+            nn.ReLU(True),
+            nn.ConvTranspose2d(ngf, nc, 4, 2, 1, bias=False),
+            nn.Tanh(),
+        )
+
+    def forward(self, input):
+        output = self.network(input)
+        return output
+
+
+model = Generator()
+weights_path = hf_hub_download('nateraw/cryptopunks-gan', 'generator.pth')
+model.load_state_dict(torch.load(weights_path, map_location=torch.device('cpu')))
+model.eval()
+
+out = model(torch.randn(64, 100, 1, 1))
+save_image(out, "punks.png", normalize=True)
+print("Generated punks.png with 64 punks!")
+
+img = mpimg.imread("punks.png")
+plt.imshow(img)
+plt.axis("off")
+plt.title("Generated CryptoPunks")
+plt.show()</code></pre>
+        </div>
+    </section>
+
+    <section class="info-section" id="conclusions">
+        <div class="section-header scroll-animate">
+            <span class="section-tag">CONCLUSIONES Y RECOMENDACIONES</span>
+            <h2 class="section-title">Conclusiones y Recomendaciones</h2>
+        </div>
+        <div class="info-content">
+            <div class="info-block scroll-animate">
+                <div class="info-block-icon"></div>
+                <h3>Conclusiones</h3>
+                <ul>
+                    <li>Las GAN permiten generar im&aacute;genes nuevas y originales a partir de datos aprendidos durante el entrenamiento.</li>
+                    <li>El modelo preentrenado de CryptoPunks demuestra que la Inteligencia Artificial puede reproducir caracter&iacute;sticas visuales complejas sin necesidad de dise&ntilde;ar manualmente cada imagen.</li>
+                    <li>El uso de modelos preentrenados facilita la experimentaci&oacute;n con Deep Learning sin requerir grandes recursos computacionales para el entrenamiento.</li>
+                </ul>
+            </div>
+            <div class="info-block scroll-animate">
+                <div class="info-block-icon"></div>
+                <h3>Recomendaciones</h3>
+                <ul>
+                    <li>Utilizar una GPU para acelerar la generaci&oacute;n y entrenamiento de modelos generativos.</li>
+                    <li>Experimentar con diferentes vectores de ruido para obtener resultados m&aacute;s variados.</li>
+                    <li>Analizar arquitecturas m&aacute;s modernas como StyleGAN para mejorar la calidad de las im&aacute;genes generadas.</li>
+                    <li>Aplicar t&eacute;cnicas de generaci&oacute;n de im&aacute;genes en otros dominios como arte digital, dise&ntilde;o gr&aacute;fico o videojuegos.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
     <section class="resources-section" id="resources">
-        <div class="section-header">
+        <div class="section-header scroll-animate">
             <span class="section-tag">RECURSOS</span>
             <h2 class="section-title">Codigo y Colab</h2>
             <p class="section-desc">Accede al repositorio del modelo GAN original o ejecutalo en Google Colab.</p>
         </div>
         <div class="resources-grid">
-            <a href="https://github.com/nateraw/cryptopunks-gan" target="_blank" rel="noopener" class="resource-card resource-github">
-                <div class="resource-icon">&#128187;</div>
+            <a href="https://github.com/teddykoker/cryptopunks-gan" target="_blank" rel="noopener" class="resource-card resource-github scroll-animate">
+                <div class="resource-icon resource-icon-github">&#128187;</div>
                 <h3>GitHub</h3>
                 <p>Repositorio del modelo GAN con codigo fuente y pesos entrenados.</p>
-                <span class="resource-link">nateraw/cryptopunks-gan &rarr;</span>
+                <span class="resource-link">teddykoker/cryptopunks-gan &rarr;</span>
             </a>
-            <a href="https://colab.research.google.com/drive/1AzL0VygqsRxdSqYv_d3hPbnPmWFWdriY" target="_blank" rel="noopener" class="resource-card resource-colab">
-                <div class="resource-icon">&#128300;</div>
+            <a href="https://colab.research.google.com/drive/1AzL0VygqsRxdSqYv_d3hPbnPmWFWdriY" target="_blank" rel="noopener" class="resource-card resource-colab scroll-animate">
+                <div class="resource-icon resource-icon-colab">&#128300;</div>
                 <h3>Google Colab</h3>
                 <p>Ejecuta el generador con PyTorch directamente en la nube. Sin instalacion.</p>
                 <span class="resource-link">Abrir en Colab &rarr;</span>
             </a>
-            <a href="#" class="resource-card resource-download" id="downloadScript">
-                <div class="resource-icon">&#128230;</div>
+            <a href="#" class="resource-card resource-download scroll-animate" id="downloadScript">
+                <div class="resource-icon resource-icon-download">&#128190;</div>
                 <h3>Script Python</h3>
                 <p>Descarga generate_punks.py para generar los datos de la pagina web.</p>
                 <span class="resource-link">Descargar .py &rarr;</span>
@@ -128,42 +323,17 @@
         </div>
     </section>
 
-    <section class="about-section" id="about">
-        <div class="section-header">
-            <span class="section-tag">ACERCA</span>
-            <h2 class="section-title">Como funciona</h2>
-        </div>
-        <div class="about-grid">
-            <div class="about-card">
-                <div class="about-icon">&#129302;</div>
-                <h3>GAN Real</h3>
-                <p>Los punks que ves son generados por la misma red neuronal de PyTorch. No es una imitacion, es el output real del modelo.</p>
-            </div>
-            <div class="about-card">
-                <div class="about-icon">&#127922;</div>
-                <h3>Espacio Latente</h3>
-                <p>Cada lote usa vectores aleatorios de 100 dimensiones, creando combinaciones unicas cada vez que ejecutas el script.</p>
-            </div>
-            <div class="about-card">
-                <div class="about-icon">&#9889;</div>
-                <h3>Insta-Generate</h3>
-                <p>Presiona un boton y al instante ves 64 CryptoPunks. Sin esperar, sin servidores, sin APIs.</p>
-            </div>
-        </div>
-    </section>
-
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-brand">
-                <span class="logo-icon">&#9670;</span>
+                <span class="logo-icon"></span>
                 <span class="logo-text">CryptoPunks<span class="accent">GG</span></span>
             </div>
             <div class="footer-links">
-                <a href="https://github.com/nateraw/cryptopunks-gan" target="_blank" rel="noopener">GitHub</a>
-                <a href="https://colab.research.google.com/drive/1AzL0VygqsRxdSqYv_d3hPbnPmWFWdriY" target="_blank" rel="noopener">Colab</a>
-                <a href="#about">Acerca</a>
+                <a href="https://github.com/Josselyn-Ayo/IA" target="_blank" rel="noopener" class="footer-github-link">&#128187; Repositorio</a>
+                <a href="https://colab.research.google.com/drive/1AzL0VygqsRxdSqYv_d3hPbnPmWFWdriY" target="_blank" rel="noopener">&#128300; Colab</a>
             </div>
-            <p class="footer-copy">&copy; 2026 CryptoPunksGG &mdash; Modelo GAN por nateraw</p>
+            <p class="footer-copy">&copy; 2026 CryptoPunksGG &mdash; Josselyn Ayo &bull; Mateo Piedra &bull; Henry Tonato</p>
         </div>
     </footer>
 
