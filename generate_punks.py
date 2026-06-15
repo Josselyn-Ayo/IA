@@ -48,7 +48,7 @@ plt.title("Generated CryptoPunks")
 plt.show()
 
 print("Generando lotes para la pagina web...")
-NUM_BATCHES = 3
+NUM_BATCHES = 20
 batches = {}
 
 for i in range(NUM_BATCHES):
